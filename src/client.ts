@@ -20,7 +20,7 @@ export default class Client {
         return createConnection(this.port, this.host, () => this.connected = true);
     }
 
-    ping() {
+    async ping() {
         return this.call('PING');
     }
 
