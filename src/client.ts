@@ -36,6 +36,10 @@ export default class Client {
         return this.call('DEL', ...key);
     }
 
+    async execute(cmd: string, ...args: string[]) {
+        return await this.call(cmd, ...args);
+    }
+
     close() {
         this.conn.destroy();
     }

@@ -27,4 +27,18 @@ describe('test redis client', () => {
         let remove = await client.del(key);
         expect(remove).equal('1');
     });
+
+    it('should execute command', async () => {
+        let key = 'bitmap';
+        let map = [1, 2, 4, 9, 10, 13, 15];
+
+        for (let item of map)
+            await client.execute('setbit', key, item.toString(), '1');
+
+        let resp = await client.execute('get', key);
+
+        expect(resp).equal('he');
+
+        await client.execute('del', key);
+    });
 });
